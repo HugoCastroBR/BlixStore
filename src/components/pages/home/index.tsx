@@ -1,21 +1,29 @@
-import { View, Text,StyleSheet, Image } from "react-native"
-import React, {useState} from "react"
-import LoginInput from "../../molecules/loginInput"
-import LoginButtons from "../../molecules/loginButtons"
+import { View, StyleSheet } from "react-native"
+import React, { useState } from "react"
+import HomeButtons from "../../organisms/homeButtons"
+import HomeInputs from "../../organisms/homeInputs"
+import HomeLogo from "../../organisms/homeLogo"
+import { NativeStackScreenProps } from "@react-navigation/native-stack"
+import { RootStackParamList } from "../../../types/RootStackParams"
 
+export type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
-const Home = () => {
+const Home: React.FC<HomeProps> = (props) => {
 
-  const [isLoading, setIsLoading] = useState(false)
+  const HandlerOnRegister = () => {
+    props.navigation.navigate('Register')
+  }
 
   return (
     <View style={styles.container}>
-      <Image 
-      source={require('../../../../assets/Logoborboleta.png')}
-      style={{width: 200, height: 200, marginTop: -100}}
-      />
-      <LoginInput />
-      <LoginButtons />
+      <HomeLogo />
+      <HomeInputs />
+      <HomeButtons onRegister={HandlerOnRegister} onLogin={(
+        () => {
+          console.log('Login')
+        }
+
+      )} />
     </View>
   )
 }

@@ -6,6 +6,7 @@ export const LoginSlice = createSlice({
 	initialState: {
 		email: "",
 		password: "",
+		isLoading: false,
 	},
 	reducers: {
 		SET_EMAIL(state,{payload}:{payload:string}){
@@ -13,6 +14,9 @@ export const LoginSlice = createSlice({
 		},
 		SET_PASSWORD(state,{payload}:{payload:string}){
 			state.password = payload
-		}
+		},
+		SET_IS_LOADING(state,{payload}:{payload:boolean}){
+			state.isLoading = payload
+		},
 	},
 });
