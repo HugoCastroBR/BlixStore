@@ -6,22 +6,39 @@ import useStore from '../../../hooks/useStore';
 const RegisterInputs = () => {
 
   const { states,dispatch } = useStore()  
-  const { email, password } = states.Login
 
 
-  const HandlerChangeEmail = (value: string) => {
-    console.log(value)
-    dispatch({type: 'SET_EMAIL', payload: value})
+
+  const HandlerRegisterUsername = (value:string) => {
+    dispatch({type:'REGISTER_USERNAME',payload:value})
   }
 
-  const HandlerChangePassword = (value: string) => {
-    console.log(value)
-    dispatch({type: 'SET_PASSWORD', payload: value})
+  const HandlerRegisterEmail = (value:string) => {
+    dispatch({type:'REGISTER_EMAIL',payload:value})
   }
+
+  const HandlerRegisterPassword = (value:string) => {
+    dispatch({type:'REGISTER_PASSWORD',payload:value})
+  }
+
+  const HandlerRegisterRepeatPassword = (value:string) => {
+    dispatch({type:'REGISTER_CONFIRM_PASSWORD',payload:value})
+  }
+
 
 
   return(
     <View style={styles.container}>
+      <View style={styles.ItemContainer}>
+        <StyledText color='#532D81'>Username</StyledText>
+        <StyledTextInput 
+          backgroundColor='#F3F3F3' 
+          width={220} 
+          height={32} 
+          placeholder='Username'
+          onExit={(value) => HandlerRegisterUsername(value)}
+          />
+      </View>
       <View style={styles.ItemContainer}>
         <StyledText color='#532D81'>Email</StyledText>
         <StyledTextInput 
@@ -29,7 +46,7 @@ const RegisterInputs = () => {
           width={220} 
           height={32} 
           placeholder='Email'
-          onExit={(value) => HandlerChangeEmail(value)}
+          onExit={(value) => HandlerRegisterEmail(value)}
           />
       </View>
       <View style={styles.ItemContainer}>
@@ -39,7 +56,7 @@ const RegisterInputs = () => {
           width={220}
           height={32}
           placeholder='Password'
-          onExit={(value) => HandlerChangePassword(value)}
+          onExit={(value) => HandlerRegisterPassword(value)}
           />
       </View>
       <View style={styles.ItemContainer}>
@@ -49,7 +66,7 @@ const RegisterInputs = () => {
           width={220}
           height={32}
           placeholder='Repeat Password'
-          onExit={(value) => HandlerChangePassword(value)}
+          onExit={(value) => HandlerRegisterRepeatPassword(value)}
           />
       </View>
     </View>

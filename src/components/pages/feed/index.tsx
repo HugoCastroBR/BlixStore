@@ -1,27 +1,20 @@
 import { View, StyleSheet } from "react-native"
 import React, { useState } from "react"
-import HomeButtons from "../../organisms/homeButtons"
-import HomeInputs from "../../organisms/homeInputs"
 import HomeLogo from "../../organisms/homeLogo"
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { RootStackParamList } from "../../../types/RootStackParams"
+import Product from "../../molecules/product"
+import ProductList from "../../organisms/productList"
+import GoBackHeader from "../../molecules/goBackHeader"
 
-export type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
+export type FeedProps = NativeStackScreenProps<RootStackParamList, 'Feed'>;
 
-const Home: React.FC<HomeProps> = (props) => {
-
-  const HandlerOnRegister = () => {
-    props.navigation.navigate('Register')
-  }
-  const HandlerOnLogin = () => {
-    props.navigation.navigate('Feed')
-  }
+const Feed: React.FC<FeedProps> = (props) => {
 
   return (
     <View style={styles.container}>
-      <HomeLogo />
-      <HomeInputs />
-      <HomeButtons onRegister={HandlerOnRegister} onLogin={HandlerOnLogin} />
+      <GoBackHeader onGoBack={() => props.navigation.goBack()}/>
+      <ProductList/>
     </View>
   )
 }
@@ -38,4 +31,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Home
+export default Feed

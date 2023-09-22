@@ -8,6 +8,7 @@ interface StyledButtonProps {
   children: React.ReactNode;
   borderRadius?: number;
   onPress?: () => void;
+  style ?: any;
 }
 
 const ButtonStyleSheet = StyleSheet.create({
@@ -18,7 +19,7 @@ const ButtonStyleSheet = StyleSheet.create({
 });
 
 
-const StyledButton = ({ width, height, backgroundColor, children, borderRadius,onPress }: StyledButtonProps,) => {
+const StyledButton = ({ width, height, backgroundColor, children, borderRadius,onPress,style }: StyledButtonProps,) => {
   
   const onPressHandler = () => {
     if(onPress){
@@ -30,6 +31,7 @@ const StyledButton = ({ width, height, backgroundColor, children, borderRadius,o
     [
       ButtonStyleSheet.button,
       { width, height, backgroundColor, borderRadius },
+      style
     ]
   }
   onPress={onPressHandler}

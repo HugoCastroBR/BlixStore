@@ -5,30 +5,18 @@ import StyledTextInput from '../../atoms/StyledInput';
 import StyledButton from '../../atoms/StyledButton';
 import { useNavigation } from '@react-navigation/native';
 import { HomeProps } from '../../pages/home';
-import useStore from '../../../hooks/useStore';
 
 interface HomeButtonsProps {
   onRegister: () => void;
-  onLogin: () => void;
 }
 
-const LoginButtons  = ({onRegister,onLogin}:HomeButtonsProps) => {
+const RegisterButton  = ({onRegister}:HomeButtonsProps) => {
 
   const [isLoading, setIsLoading] = React.useState(false)
 
-  const {states, dispatch} = useStore();
-  const {Login} = states;
-
-
-  const HandlerChangeToRegister = () => {
+  const HandlerRegisterTouch = () => {
       onRegister()
   }
-  const HandlerChangeToLogin = () => {
-    setIsLoading(true)
-    console.log('Login', Login)
-    // onLogin()
-  }
-
 
   return (
     <View style={styles.container}>
@@ -38,20 +26,9 @@ const LoginButtons  = ({onRegister,onLogin}:HomeButtonsProps) => {
           height={50}
           backgroundColor='#3B5998'
           borderRadius={10}
-          onPress={() => HandlerChangeToLogin()}
+          onPress={() => HandlerRegisterTouch()}
         >
-          {!isLoading ? <StyledText color='white'>Login</StyledText> : <ActivityIndicator size="small" color="white" />}
-
-        </StyledButton>
-      </View>
-      <View style={styles.ItemContainer}>
-        <StyledButton
-          width={220}
-          height={50}
-          borderRadius={10}
-          onPress={() => HandlerChangeToRegister()}
-          >
-          <StyledText color='white' fontWeight='100' fontSize={20} >Register</StyledText>
+          {!isLoading ? <StyledText color='white'>Register</StyledText> : <ActivityIndicator size="small" color="white" />}
         </StyledButton>
       </View>
     </View>
@@ -70,4 +47,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default LoginButtons;
+export default RegisterButton;
