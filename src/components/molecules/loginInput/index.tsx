@@ -3,6 +3,7 @@ import { View,StyleSheet } from 'react-native';
 import StyledText from '../../atoms/StyledText';
 import StyledTextInput from '../../atoms/StyledInput';
 import useStore from '../../../hooks/useStore';
+import { SetEmail, SetPassword } from '../../../store/actions';
 const LoginInput = () => {
 
   const { states,dispatch } = useStore()  
@@ -11,12 +12,12 @@ const LoginInput = () => {
 
   const HandlerChangeEmail = (value: string) => {
     console.log(value)
-    dispatch({type: 'SET_EMAIL', payload: value})
+    dispatch(SetEmail(value))
   }
 
   const HandlerChangePassword = (value: string) => {
     console.log(value)
-    dispatch({type: 'SET_PASSWORD', payload: value})
+    dispatch(SetPassword(value))
   }
 
 

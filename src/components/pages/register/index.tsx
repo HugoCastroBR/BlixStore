@@ -11,6 +11,7 @@ import useStore from "../../../hooks/useStore"
 import { usersUrl } from "../../../utils/api"
 import { RegisterSetIsLoading, RegisterSetIsSuccess } from "../../../store/actions"
 import StyledText from "../../atoms/StyledText"
+import { useFocusEffect } from "@react-navigation/native"
 
 export type RegisterProps = NativeStackScreenProps<RootStackParamList, 'Register'>;
 
@@ -18,7 +19,11 @@ export type RegisterProps = NativeStackScreenProps<RootStackParamList, 'Register
 const Register:React.FC<RegisterProps> = (props) => {
 
   const {states, dispatch} = useStore()
-
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(RegisterSetIsSuccess(false))
+    }, [])
+  )
 
   const HandlerGoBack = () => {
     props.navigation.navigate('Home')
@@ -30,12 +35,18 @@ const Register:React.FC<RegisterProps> = (props) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(states.Register)
+      body: JSON.stringify(
+        {
+          username: states.Register.username,
+          email: states.Register.email,
+          password: states.Register.password
+        }
+      )
     })
 
     const response = await request.json()
-    console.log(response)
     dispatch(RegisterSetIsLoading(false))
+    return response
   }
 
   const HandlerRegister = () => {

@@ -27,9 +27,14 @@ export const RegisterSlice = createSlice({
     },
 		SET_IS_LOADING(state,{payload}:{payload:boolean}){
 			state.isLoading = payload
+			
 		},
 		SET_IS_SUCCESS(state,{payload}:{payload:boolean}){
 			state.isSuccess = payload
+			state.email = ""
+			state.password = ""
+			state.confirmPassword = ""
+			state.username = ""
 		},
 	},
 });

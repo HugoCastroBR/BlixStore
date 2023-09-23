@@ -26,7 +26,7 @@ const LoginButtons  = ({onRegister,onLogin}:HomeButtonsProps) => {
   const HandlerChangeToLogin = () => {
     setIsLoading(true)
     console.log('Login', Login)
-    // onLogin()
+    onLogin()
   }
 
 

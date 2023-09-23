@@ -13,8 +13,10 @@ const Feed: React.FC<FeedProps> = (props) => {
 
   return (
     <View style={styles.container}>
-      <GoBackHeader onGoBack={() => props.navigation.goBack()}/>
-      <ProductList/>
+      <GoBackHeader onGoBack={() => props.navigation.navigate('Home')}/>
+      <ProductList
+        onBuy={(id) => props.navigation.navigate('Checkout', {id})}
+      />
     </View>
   )
 }

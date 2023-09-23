@@ -7,22 +7,27 @@ import { getAndSetProducts } from "../../../store/actions";
 
 
 
-const renderProducts = (products: ProductProps[]) => {
-  return products.filter((product) => product != null).map((product) => (
-    <Product
-      id={product.id}
-      name={product.name}
-      description={product.description}
-      price={product.price}
-      image={product.image}
-      onBuy={(id) => { 
-        console.log('Buy product',id)
-      }}  
-    />
-  ))
+interface ProductListProps {
+  onBuy: (id: number) => void;
 }
 
-const ProductList = () => {
+
+
+
+const ProductList = ({onBuy}:ProductListProps) => {
+
+  const renderProducts = (products: ProductProps[]) => {
+    return products.filter((product) => product != null).map((product) => (
+      <Product
+        id={product.id}
+        name={product.name}
+        description={product.description}
+        price={product.price}
+        image={product.image}
+        onBuy={onBuy}  
+      />
+    ))
+  }
 
   const {states,dispatch} = useStore()
 

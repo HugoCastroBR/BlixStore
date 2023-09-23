@@ -5,18 +5,38 @@ import HomeInputs from "../../organisms/homeInputs"
 import HomeLogo from "../../organisms/homeLogo"
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { RootStackParamList } from "../../../types/RootStackParams"
+import useStore from "../../../hooks/useStore"
+import { usersUrl } from "../../../utils/api"
 
 export type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const Home: React.FC<HomeProps> = (props) => {
 
+  const { states } = useStore()
+
   const HandlerOnRegister = () => {
     props.navigation.navigate('Register')
   }
-  const HandlerOnLogin = () => {
-    props.navigation.navigate('Feed')
-  }
+  const HandlerOnLogin = async () => {
+    const request = await fetch(usersUrl)
+    const response = await request.json()
+    // find user if exists
+    console.log('response', response)
 
+
+    const data = Object.values(response)
+    .find((user: any) => user.email === states.Login.email && user.password === states.Login.password)
+
+    const user = data as any
+    console.log('user', user)
+    if(!!user){
+      props.navigation.navigate('Feed')
+    }
+
+
+
+  }
+  
   return (
     <View style={styles.container}>
       <HomeLogo />
