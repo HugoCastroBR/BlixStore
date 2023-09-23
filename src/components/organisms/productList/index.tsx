@@ -2,29 +2,12 @@ import React, { useEffect } from "react";
 import { View, StyleSheet, ActivityIndicator } from "react-native";
 import Product, { ProductProps } from "../../molecules/product";
 import { productsUrl } from "../../../utils/api";
+import useStore from "../../../hooks/useStore";
+import { getAndSetProducts } from "../../../store/actions";
 
-
-const mockedProduct: ProductProps = {
-  id: 1,
-  name: "Burger",
-  description: "Tasty",
-  price: 10,
-  image: "https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_960_720.jpg"
-}
-
-
-const getProducts = async () => {
-  const request = await fetch(productsUrl)
-  const response = await request.json()
-  return response
-}
 
 
 const renderProducts = (products: ProductProps[]) => {
-
-  console.log(products[1])
-
-
   return products.filter((product) => product != null).map((product) => (
     <Product
       id={product.id}
@@ -41,20 +24,15 @@ const renderProducts = (products: ProductProps[]) => {
 
 const ProductList = () => {
 
-  const [products, setProducts] = React.useState<ProductProps[]>([])
+  const {states,dispatch} = useStore()
 
   useEffect(() => {
-    const getProductsAsync = async () => {
-      try {
-        const response = await getProducts()
-        setProducts(response)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getProductsAsync()
-  }, [])
+    dispatch(getAndSetProducts())
+  },[])
 
+
+  const products = states.Products.products
+  
 
   return (
     <View style={styles.container}>
@@ -64,7 +42,6 @@ const ProductList = () => {
     </View>
   );
 }
-
 
 
 const styles = StyleSheet.create({

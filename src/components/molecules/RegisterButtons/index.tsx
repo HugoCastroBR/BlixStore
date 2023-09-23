@@ -5,6 +5,8 @@ import StyledTextInput from '../../atoms/StyledInput';
 import StyledButton from '../../atoms/StyledButton';
 import { useNavigation } from '@react-navigation/native';
 import { HomeProps } from '../../pages/home';
+import useStore from '../../../hooks/useStore';
+import { RegisterSetIsLoading } from '../../../store/actions';
 
 interface HomeButtonsProps {
   onRegister: () => void;
@@ -12,9 +14,12 @@ interface HomeButtonsProps {
 
 const RegisterButton  = ({onRegister}:HomeButtonsProps) => {
 
-  const [isLoading, setIsLoading] = React.useState(false)
+  // const [isLoading, setIsLoading] = React.useState(false)
+  const {states, dispatch} = useStore()
+  const isLoading = states.Register.isLoading
 
   const HandlerRegisterTouch = () => {
+      dispatch(RegisterSetIsLoading(true))
       onRegister()
   }
 

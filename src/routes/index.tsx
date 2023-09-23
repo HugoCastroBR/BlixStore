@@ -13,7 +13,7 @@ const Routes = () =>{
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Feed"
+        initialRouteName="Register"
         screenOptions={{
           headerShown: false
         }}>

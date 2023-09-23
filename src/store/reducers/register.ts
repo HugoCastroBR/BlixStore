@@ -8,6 +8,8 @@ export const RegisterSlice = createSlice({
 		password: "",
     confirmPassword:"",
     username:"",
+		isLoading: false,
+		isSuccess: false,
 	},
 	reducers: {
 		REGISTER_EMAIL(state,{payload}:{payload:string}){
@@ -20,7 +22,14 @@ export const RegisterSlice = createSlice({
       state.confirmPassword = payload
     },
     REGISTER_USERNAME(state,{payload}:{payload:string}){
+			console.log("payload",payload)
       state.username = payload
     },
+		SET_IS_LOADING(state,{payload}:{payload:boolean}){
+			state.isLoading = payload
+		},
+		SET_IS_SUCCESS(state,{payload}:{payload:boolean}){
+			state.isSuccess = payload
+		},
 	},
 });

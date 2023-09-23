@@ -3,6 +3,7 @@ import { View,StyleSheet } from 'react-native';
 import StyledText from '../../atoms/StyledText';
 import StyledTextInput from '../../atoms/StyledInput';
 import useStore from '../../../hooks/useStore';
+import { RegisterSetConfirmPassword, RegisterSetEmail, RegisterSetPassword } from '../../../store/actions';
 const RegisterInputs = () => {
 
   const { states,dispatch } = useStore()  
@@ -10,19 +11,19 @@ const RegisterInputs = () => {
 
 
   const HandlerRegisterUsername = (value:string) => {
-    dispatch({type:'REGISTER_USERNAME',payload:value})
+    dispatch(RegisterSetPassword(value))
   }
 
   const HandlerRegisterEmail = (value:string) => {
-    dispatch({type:'REGISTER_EMAIL',payload:value})
+    dispatch(RegisterSetEmail(value))
   }
 
   const HandlerRegisterPassword = (value:string) => {
-    dispatch({type:'REGISTER_PASSWORD',payload:value})
+    dispatch(RegisterSetPassword(value))
   }
 
   const HandlerRegisterRepeatPassword = (value:string) => {
-    dispatch({type:'REGISTER_CONFIRM_PASSWORD',payload:value})
+    dispatch(RegisterSetConfirmPassword(value))
   }
 
 
