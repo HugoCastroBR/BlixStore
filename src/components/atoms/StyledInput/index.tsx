@@ -10,6 +10,7 @@ interface StyledInputProps {
   borderRadius?: number;
   onBlur?: () => void;
   onExit?: (value:string) => void;
+  isSecret?: boolean;
 }
 
 const InputStyleSheet = StyleSheet.create({
@@ -32,6 +33,7 @@ const StyledTextInput = (
     borderRadius,
     placeholder,
     onExit,
+    isSecret = false
   }: StyledInputProps,) => {
 
   const [text, onChangeText] = useState("");
@@ -47,6 +49,7 @@ const StyledTextInput = (
     placeholder={placeholder}
     onBlur={() => onBlurHandler()}
     onChangeText={onChangeText}
+    secureTextEntry={isSecret}
     style={
       [
         InputStyleSheet.input,

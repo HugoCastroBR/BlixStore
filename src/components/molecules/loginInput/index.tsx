@@ -41,6 +41,7 @@ const LoginInput = () => {
           height={32}
           placeholder='Password'
           onExit={(value) => HandlerChangePassword(value)}
+          isSecret
           />
       </View>
     </View>
