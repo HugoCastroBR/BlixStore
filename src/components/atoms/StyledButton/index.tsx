@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
+import useStore from '../../../hooks/useStore';
 
 interface StyledButtonProps {
   width?: number;
@@ -8,7 +9,8 @@ interface StyledButtonProps {
   children: React.ReactNode;
   borderRadius?: number;
   onPress?: () => void;
-  style ?: any;
+  style?: any;
+  disabled?: boolean;
 }
 
 const ButtonStyleSheet = StyleSheet.create({
@@ -16,25 +18,42 @@ const ButtonStyleSheet = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  disabled: {
+    backgroundColor: '#838383'
+  }
 });
 
 
-const StyledButton = ({ width, height, backgroundColor, children, borderRadius,onPress,style }: StyledButtonProps,) => {
-  
+
+
+const StyledButton = ({
+  width,
+  height,
+  backgroundColor,
+  children,
+  borderRadius,
+  onPress,
+  style,
+  disabled = false
+}: StyledButtonProps,) => {
+
   const onPressHandler = () => {
-    if(onPress){
+    if (onPress) {
       onPress()
     }
   }
-  
-  return <TouchableOpacity style={
-    [
-      ButtonStyleSheet.button,
-      { width, height, backgroundColor, borderRadius },
-      style
-    ]
-  }
-  onPress={onPressHandler}
+
+  return <TouchableOpacity
+    disabled={disabled}
+    style={
+      [
+        ButtonStyleSheet.button,
+        { width, height, backgroundColor, borderRadius },
+        style,
+        disabled ? ButtonStyleSheet.disabled : {}
+      ]
+    }
+    onPress={onPressHandler}
   >
     {children}
   </TouchableOpacity>;

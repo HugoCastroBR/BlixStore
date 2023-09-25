@@ -6,18 +6,18 @@ import StyledButton from '../../atoms/StyledButton';
 import { useNavigation } from '@react-navigation/native';
 import { HomeProps } from '../../pages/home';
 import useStore from '../../../hooks/useStore';
+import { useEffect } from 'react';
 
 interface HomeButtonsProps {
   onRegister: () => void;
   onLogin: () => void;
+  toggleValid: () => boolean;
 }
 
-const LoginButtons  = ({onRegister,onLogin}:HomeButtonsProps) => {
+const LoginButtons  = ({onRegister,onLogin,toggleValid}:HomeButtonsProps) => {
 
   const [isLoading, setIsLoading] = React.useState(false)
-
-  const {states, dispatch} = useStore();
-  const {Login} = states;
+  // const [LoginValid, setLoginValid] = React.useState(false)
 
 
   const HandlerChangeToRegister = () => {
@@ -25,7 +25,6 @@ const LoginButtons  = ({onRegister,onLogin}:HomeButtonsProps) => {
   }
   const HandlerChangeToLogin = () => {
     setIsLoading(true)
-    console.log('Login', Login)
     onLogin()
   }
 
@@ -39,6 +38,7 @@ const LoginButtons  = ({onRegister,onLogin}:HomeButtonsProps) => {
           backgroundColor='#3B5998'
           borderRadius={10}
           onPress={() => HandlerChangeToLogin()}
+          disabled={false}
         >
           {!isLoading ? <StyledText color='white'>Login</StyledText> : <ActivityIndicator size="small" color="white" />}
 

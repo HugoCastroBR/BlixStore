@@ -35,7 +35,6 @@ export const RegisterSetIsSuccess = (value: boolean) => {
 export const setProducts = (value:ProductProps[]) => {
   return ProductsActions.SET_PRODUCTS(value)
 }
-
 export const getAndSetProducts = () => {
   return async (dispatch:any) => {
     const request = await fetch(productsUrl)
@@ -43,7 +42,6 @@ export const getAndSetProducts = () => {
     dispatch(setProducts(response))
   }
 }
-
 export const setCardNumber = (value: string) => {
   return CheckoutActions.SET_CARD_NUMBER(value)
 }

@@ -1,17 +1,8 @@
 import { View,StyleSheet, Alert} from "react-native"
 import React, {useState} from "react"
-
-import RegisterInputs from "../../molecules/registerInputs"
-import RegisterButton from "../../molecules/RegisterButtons"
-import HomeLogo from "../../organisms/homeLogo"
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { RootStackParamList } from "../../../types/RootStackParams"
-import RegisterGoBack from "../../molecules/RegisterGoBack"
-import useStore from "../../../hooks/useStore"
-import { usersUrl } from "../../../utils/api"
-import { RegisterSetIsLoading, RegisterSetIsSuccess } from "../../../store/actions"
-import StyledText from "../../atoms/StyledText"
-import { useFocusEffect } from "@react-navigation/native"
+
 import CheckoutInputs from "../../organisms/checkoutInputs"
 
 export type Checkout = NativeStackScreenProps<RootStackParamList, 'Checkout'>;

@@ -32,16 +32,21 @@ const Home: React.FC<HomeProps> = (props) => {
     if(!!user){
       props.navigation.navigate('Feed')
     }
-
-
-
   }
+
+  const [isLoginValid, setIsLoginValid] = useState(false)
   
   return (
     <View style={styles.container}>
       <HomeLogo />
-      <HomeInputs />
-      <HomeButtons onRegister={HandlerOnRegister} onLogin={HandlerOnLogin} />
+      <HomeInputs 
+        isLoginValid={setIsLoginValid}
+      />
+      <HomeButtons 
+        onRegister={HandlerOnRegister} 
+        onLogin={HandlerOnLogin} 
+        toggleValid={() => !isLoginValid}
+      />
     </View>
   )
 }

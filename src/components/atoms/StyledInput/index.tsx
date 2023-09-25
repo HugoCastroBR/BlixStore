@@ -11,6 +11,7 @@ interface StyledInputProps {
   onBlur?: () => void;
   onExit?: (value:string) => void;
   isSecret?: boolean;
+  isError?: boolean;
 }
 
 const InputStyleSheet = StyleSheet.create({
@@ -21,6 +22,10 @@ const InputStyleSheet = StyleSheet.create({
     padding: 10,
     backgroundColor: 'transparent'
   },
+  inputIsError: {
+    borderWidth: 2,
+    borderColor: 'red'
+  }
 });
 
 
@@ -33,7 +38,8 @@ const StyledTextInput = (
     borderRadius,
     placeholder,
     onExit,
-    isSecret = false
+    isSecret = false,
+    isError = false
   }: StyledInputProps,) => {
 
   const [text, onChangeText] = useState("");
@@ -54,6 +60,7 @@ const StyledTextInput = (
       [
         InputStyleSheet.input,
         { width, height, backgroundColor, borderRadius },
+        isError ? InputStyleSheet.inputIsError : {}
       ]
     } />
 

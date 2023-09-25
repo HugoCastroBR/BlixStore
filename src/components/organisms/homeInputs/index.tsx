@@ -1,8 +1,15 @@
 
 import React from 'react'
 import LoginInput from '../../molecules/loginInput'
-const HomeInputs = () => {
-  return <LoginInput />
+
+interface HomeInputsProps {
+  isLoginValid: (value: boolean) => void;
+}
+
+const HomeInputs = ({isLoginValid}:HomeInputsProps) => {
+  return <LoginInput
+    isLoginValid={isLoginValid}
+  />
 }
 
 export default HomeInputs

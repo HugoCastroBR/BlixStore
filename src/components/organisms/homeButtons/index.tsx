@@ -7,11 +7,12 @@ import { HomeProps } from "../../pages/home";
 interface HomeButtonsProps {
   onRegister: () => void;
   onLogin: () => void;
+  toggleValid : () => boolean;
 }
-const HomeButtons = ({onRegister,onLogin}:HomeButtonsProps) => {
+const HomeButtons = ({onRegister,onLogin,toggleValid}:HomeButtonsProps) => {
 
   
-  return <LoginButtons onLogin={onLogin} onRegister={onRegister} />;
+  return <LoginButtons toggleValid={toggleValid} onLogin={onLogin} onRegister={onRegister} />;
 }
 
 export default HomeButtons;
